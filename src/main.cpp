@@ -49,7 +49,7 @@ void readGimbals() {
     readBuffer[i] = Wire.read();
     i++;
   }
-  Serial.println(readBuffer[0] + " " + readBuffer[1] + " " + readBuffer[2] + " " + readBuffer[3]);
+  Serial.println((int)readBuffer[0] + " " + (int)readBuffer[1] + " " + (int)readBuffer[2] + " " + (int)readBuffer[3]);
   delay(delayMills);
   requestGimbals();
 }
