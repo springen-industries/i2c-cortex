@@ -43,8 +43,6 @@ void requestGimbals(){
 
 void setup() {
   Serial.begin(9600);                // join i2c bus with address #8
-  Wire.onReceive(readGimbals); // register event
-  //startControlLoop();
 }
 
 // simply send the buffers from gimbal, switch and synthetic values to the radio module via i2c
