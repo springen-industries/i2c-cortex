@@ -39,7 +39,7 @@ void transmitReadings(){
 void readGimbals() {
   int i = 0;
   Wire.requestFrom(10,4);
-  while(Wire.available){
+  while(Wire.available()){
     readBuffer[i] = Wire.read();
     i++;
   }
