@@ -17,7 +17,7 @@ int delayMills = 10;
 
 void zeroArrays(){
   for (int i=0; i<channelCount; i++){
-    i2cBuffe[i] = 0;
+    i2cBuffer[i] = 0;
     readBuffer[i] = 0;
   }
 }
@@ -44,10 +44,10 @@ void readGimbals() {
     i++;
   }
   delay(delayMills);
-  requestGimbals();
+  requestGimbalsg();
 }
 
-void requestGimbals(){
+void requestGimbalsg(){
 
 }
 
@@ -62,7 +62,7 @@ void requestSynthetics(){
 
 void startControlLoop(){
   // this will kick off the loop for reading the gimbals
-    requestGimbals();
+    requestGimbalsg();
  // this will kick off the loop for reading synthetic readValues
     requestSynthetics();
 }
