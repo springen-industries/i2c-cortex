@@ -64,7 +64,7 @@ void requestSynthetics(){
 
 void startControlLoop(){
   // this will kick off the loop for reading the gimbals
-    requestGimbalsg();
+    requestGimbals();
  // this will kick off the loop for reading synthetic readValues
     requestSynthetics();
 }
