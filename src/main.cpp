@@ -17,7 +17,8 @@ int delayMills = 10;
 
 void zeroArrays(){
   for (int i=0; i<channelCount; i++){
-
+    i2cBuffe[i] = 0;
+    readBuffer[i] = 0;
   }
 }
 
@@ -25,26 +26,57 @@ void zeroArrays(){
 
 void transmitReadings(){
   Wire.beginTransmission(8);
-  Wire.write(i2cBuffer, channelCount);
+  Wire.write(i2i2cBuffer, channelCount);
   Wire.endTransmission();
 }
+
+
+// this is the gimbal loop
+// catches response to a read request from the gimbal controller
+// pulls values into cortex buffer
+// sleeps
+/// makes another request
 void readGimbals() {
-  readBuffer = Wire.requestFrom(10,4);
+  int i = 0;
+  Wire.requestFrom(10,4);
+  while(Wire.available){
+    readBuffer[i] = Wire.read();
+    i++;
+  }
+  sleep(delayMills);
+  requestGimbals();
 }
+
+void requestGimbals(){
+
+}
+
 void readSynthetics(){
   //bit shift over 4 bytes, read pre-defined number of bytes from synthetic states
 
 }
 
-void setup() {
-  Serial.begin(9600);                // join i2c bus with address #8
-  Wire.onReceive(i2cRequest); // register event
-  zeroArrays();
+void requestSynthetics(){
+
 }
 
-void loop() {
-  readGimbals();
-  readSynthetics();
-  transmitReadings();
+void startControlLoop(){
+  // this will kick off the loop for reading the gimbals
+    requestGimbals();
+ // this will kick off the loop for reading synthetic readValues
+    requestSynthetics();
+}
 
+
+
+void setup() {
+  Serial.begin(9600);                // join i2c bus with address #8
+  Wire.onReceive(readGimbals); // register event
+  startControlLoop();
+}
+
+// simply send the buffers from gimbal, switch and synthetic values to the radio module via i2c
+void loop() {
+  transmitReadings();
+  sleep(delayMills);
 }
