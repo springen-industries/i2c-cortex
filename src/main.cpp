@@ -31,13 +31,13 @@ void transmitReadings(){
 }
 
 void prepareReadings(){
-  for(i=0;i<channelCount;i++){
+  for(int i=0;i<channelCount;i++){
     i2cBuffer[i] = readBuffer[i];
   }
 }
 
 void requestSynthetics(){
-  
+
 }
 
 void requestGimbals(){
