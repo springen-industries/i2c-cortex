@@ -44,7 +44,7 @@ void readGimbals() {
     i++;
   }
   delay(delayMills);
-  requestGimbalsg();
+  requestGimbals();
 }
 
 void requestGimbalsg(){
