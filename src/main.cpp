@@ -29,9 +29,7 @@ void transmitReadings(){
   Wire.endTransmission();
 }
 void readGimbals() {
-  Wire.beginTransmission(10);
-  readBuffer = Wire.read();
-  Wire.endTransmission();
+  readBuffer = Wire.requestFrom(10,4);
 }
 void readSynthetics(){
   //bit shift over 4 bytes, read pre-defined number of bytes from synthetic states
