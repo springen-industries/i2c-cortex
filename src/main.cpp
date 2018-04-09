@@ -30,7 +30,7 @@ void transmitReadings(){
 }
 void readGimbals() {
   Wire.beginTransmission(10);
-  Wire.read(readBuffer,4);
+  Wire.read(readBuffer);
   Wire.endTransmission();
 }
 void readSynthetics(){
