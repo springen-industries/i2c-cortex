@@ -30,6 +30,15 @@ void transmitReadings(){
   Wire.endTransmission();
 }
 
+void prepareReadings(){
+  for(i=0;i<channelCount;i++){
+    i2cBuffer[i] = readBuffer[i];
+  }
+}
+
+void requestSynthetics(){
+  
+}
 
 void requestGimbals(){
   int i = 0;
@@ -49,7 +58,11 @@ void setup() {
 // simply send the buffers from gimbal, switch and synthetic values to the radio module via i2c
 void loop() {
   requestGimbals();
+  requestSynthetics();
+  prepareReadings();
+  transmitReadings();
   delay(delayMills);
+
   transmitReadings();
   delay(delayMills);
   //Serial.println("YO");
