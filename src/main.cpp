@@ -26,7 +26,7 @@ void zeroArrays(){
 
 void transmitReadings(){
   Wire.beginTransmission(8);
-  Wire.write(i2i2cBuffer, channelCount);
+  Wire.write(i2cBuffer, channelCount);
   Wire.endTransmission();
 }
 
@@ -34,7 +34,7 @@ void transmitReadings(){
 // this is the gimbal loop
 // catches response to a read request from the gimbal controller
 // pulls values into cortex buffer
-// sleeps
+// delays
 /// makes another request
 void readGimbals() {
   int i = 0;
@@ -43,7 +43,7 @@ void readGimbals() {
     readBuffer[i] = Wire.read();
     i++;
   }
-  sleep(delayMills);
+  delay(delayMills);
   requestGimbals();
 }
 
@@ -78,5 +78,5 @@ void setup() {
 // simply send the buffers from gimbal, switch and synthetic values to the radio module via i2c
 void loop() {
   transmitReadings();
-  sleep(delayMills);
+  delay(delayMills);
 }
