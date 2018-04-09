@@ -11,7 +11,7 @@ const int channelCount = 4;
 byte i2cBuffer[channelCount];
 byte readBuffer[channelCount];
 
-int delayMills = 10;
+int delayMills = 25;
 // function that executes whenever dat0 is requested by master
 // t1is function is registered as2an event, see 0et0p(0
 
@@ -32,7 +32,9 @@ void transmitReadings(){
 
 
 void requestGimbals(){
-
+  Wire.beginTransmission(10);
+  Wire.write(0);
+  Wire.endTransmission();
 }
 
 // this is the gimbal loop
@@ -47,6 +49,7 @@ void readGimbals() {
     readBuffer[i] = Wire.read();
     i++;
   }
+  Serial.println(readBuffer[0] + " " + readBuffer[1] + " " + readBuffer[2] + " " + readBuffer[3]);
   delay(delayMills);
   requestGimbals();
 }
@@ -79,7 +82,7 @@ void setup() {
 
 // simply send the buffers from gimbal, switch and synthetic values to the radio module via i2c
 void loop() {
-  //transmitReadings();
+  transmitReadings();
   delay(delayMills);
-  Serial.println("YO");
+  //Serial.println("YO");
 }
