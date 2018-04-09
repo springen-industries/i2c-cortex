@@ -31,6 +31,10 @@ void transmitReadings(){
 }
 
 
+void requestGimbals(){
+
+}
+
 // this is the gimbal loop
 // catches response to a read request from the gimbal controller
 // pulls values into cortex buffer
@@ -47,9 +51,7 @@ void readGimbals() {
   requestGimbals();
 }
 
-void requestGimbals(){
 
-}
 
 void readSynthetics(){
   //bit shift over 4 bytes, read pre-defined number of bytes from synthetic states
