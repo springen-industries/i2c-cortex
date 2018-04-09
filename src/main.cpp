@@ -74,11 +74,12 @@ void startControlLoop(){
 void setup() {
   Serial.begin(9600);                // join i2c bus with address #8
   Wire.onReceive(readGimbals); // register event
-  startControlLoop();
+  //startControlLoop();
 }
 
 // simply send the buffers from gimbal, switch and synthetic values to the radio module via i2c
 void loop() {
-  transmitReadings();
+  //transmitReadings();
   delay(delayMills);
+  Serial.println("YO");
 }
