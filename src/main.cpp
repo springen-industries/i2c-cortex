@@ -44,7 +44,7 @@ void requestGimbals(){
 /// makes another request
 void readGimbals() {
   int i = 0;
-  Wire.requestFrom(10,4);
+  
   while(Wire.available()){
     readBuffer[i] = Wire.read();
     i++;
