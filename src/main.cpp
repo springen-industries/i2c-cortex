@@ -47,7 +47,7 @@ void readGimbals() {
   requestGimbals();
 }
 
-void requestGimbalsg(){
+void requestGimbals(){
 
 }
 
